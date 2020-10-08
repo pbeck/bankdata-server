@@ -1,6 +1,6 @@
 # Bankdata Server
 
-[![Read more](./pitch.png)](https://beckmanstrandberg.se/projekt/bankdata)
+![Read more](./pitch.png)
 
 **Welcome!** This is the source code repo for the Bankdata Server. 
 
@@ -61,8 +61,6 @@ $ yarn serve
 
 ## License and Copyright
 
-Licensed under the MIT License 
-
-Copyright (c) 2020 Pelle Beckman, Beckman Strandberg AB
+Licensed under the MIT License. Copyright (c) Pelle Beckman
 
 Django & Vue Heroku backend code based on [django-vue-template](https://github.com/gtalarico/django-vue-template) copyright (c) 2018 Gui Talarico

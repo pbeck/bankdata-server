@@ -19,13 +19,6 @@ This repo is the code we use to run our Heroku server. [Here's the repo for the
 
 The use of or participation in this software project shall not in any form be considered financial or legal advice.
 
-## License and Copyright
-
-Licensed under the MIT License 
-
-Copyright (c) 2020 Pelle Beckman, Beckman Strandberg AB
-
-Django & Vue Heroku backend code based on [django-vue-template](https://github.com/gtalarico/django-vue-template) copyright (c) 2018 Gui Talarico
 
 ## Local Development
 
@@ -65,3 +58,11 @@ From another tab in the same directory:
 ```
 $ yarn serve
 ```
+
+## License and Copyright
+
+Licensed under the MIT License 
+
+Copyright (c) 2020 Pelle Beckman, Beckman Strandberg AB
+
+Django & Vue Heroku backend code based on [django-vue-template](https://github.com/gtalarico/django-vue-template) copyright (c) 2018 Gui Talarico

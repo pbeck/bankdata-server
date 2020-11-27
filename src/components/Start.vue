@@ -1,16 +1,16 @@
 <template>
-  <div class="home">
+  <div class="start">
 
-    <p>To see this Demo in action please login.</p>
+    <p>Start</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home',
+  name: 'Start',
   data() {
     return {
-      name: 'Home Page',
+      name: 'Start',
     };
   },
 };

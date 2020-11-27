@@ -33,28 +33,34 @@ Before getting started you should have the following installed and running. Also
 - [X] Python 3 - [instructions](https://wiki.python.org/moin/BeginnersGuide)
 - [X] Pipenv - [instructions](https://pipenv.readthedocs.io/en/latest/install/#installing-pipenv)
 
-## Setup Template
+Setup `.env.local` with:
+
+```
+export TINK_CLIENT_ID='id'
+export TINK_CLIENT_SECRET='secret'
+```
+
+## Setup
 
 ```
 $ git clone https://github.com/pbeck/bankdata-server
 $ cd bankdata-server
-```
-
-Setup
-```
 $ yarn install
 $ pipenv install --dev && pipenv shell
+$ source .env.local
 $ python manage.py migrate
 ```
 
 ## Running Development Servers
 
+Run these concurrently
+
+__Django Backend__
 ```
 $ python manage.py runserver
 ```
 
-From another tab in the same directory:
-
+__Vue Dev Server__
 ```
 $ yarn serve
 ```

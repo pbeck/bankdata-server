@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 
 from rest_framework.views import APIView
+import os
 import requests
 import sys
 import json
@@ -15,9 +16,12 @@ index_view = never_cache(TemplateView.as_view(template_name='index.html'))
 
 '''
 Ok, so what is 'TransmogrifyView'? It's the result of Tink which requires
-a callback url for getting a client secrets. Yes yes, I know it's poor
+a callback url for getting a client secrets. Yes, yes, I know it's poor
 coding but I don't remember the specific details. Will update if my
-memory comes back.
+memory comes back. 
+
+Update: Auth flow. Get 'code' from Tink via callback and use that code
+in subsequent data requests. 
 '''
 
 class TransmogrifyView(APIView):
@@ -27,15 +31,15 @@ class TransmogrifyView(APIView):
       '''
       TODO: This error handling is crude, what we're really
       trying to do is making sure the 'code' param is set
-      '''      
+      '''   
       try:
         body = {
           'code': request.data['code'],
-          'client_id': self.TINK_CLIENT_ID,
-          'client_secret': self.TINK_CLIENT_SECRET,
+          'client_id': os.environ['TINK_CLIENT_ID'],
+          'client_secret': os.environ['TINK_CLIENT_SECRET'],
           'grant_type': 'authorization_code'
         }
-
+        
       except:
         return Response(status=422, data={'message': 'No code'})
 
@@ -53,6 +57,7 @@ class TransmogrifyView(APIView):
       except:
         return Response(status=422, data={'message': 'No token'})
 
+      
       # TODO: Can't we just return the token to our client
       # and let it handle the rest?
       response_data = requests.post(self.base_url + '/search',
@@ -61,10 +66,10 @@ class TransmogrifyView(APIView):
           "Authorization": "Bearer " + token
         },
         data = json.dumps({ 
-          "queryString": "food this week"
+          "limit": 100
         })
       )
 
-      print(response_data.text, file=sys.stderr)
+      #print(response_data.text, file=sys.stderr)
       
       return Response(response_data.json())

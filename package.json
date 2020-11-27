@@ -11,9 +11,9 @@
     "axios": "^0.18.0",
     "buefy": "^0.9.3",
     "js-cookie": "^2.2.0",
-    "vue": "^2.5.17",
+    "vue": "^2.6.11",
     "vue-router": "^3.0.1",    
-    "vuex": "^3.0.1"
+    "vuex": "^3.6.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-rc.12",
@@ -35,7 +35,9 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {
+      "no-console": "off"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

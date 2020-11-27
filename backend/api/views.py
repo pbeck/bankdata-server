@@ -13,6 +13,13 @@ import json
 # Serve Vue Application
 index_view = never_cache(TemplateView.as_view(template_name='index.html'))
 
+'''
+Ok, so what is 'TransmogrifyView'? It's the result of Tink which requires
+a callback url for getting a client secrets. Yes yes, I know it's poor
+coding but I don't remember the specific details. Will update if my
+memory comes back.
+'''
+
 class TransmogrifyView(APIView):
     base_url = 'https://api.tink.se/api/v1'
 

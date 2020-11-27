@@ -11,6 +11,8 @@ from rest_framework import routers
 
 from .api.views import index_view, TransmogrifyView
 
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
 router = routers.DefaultRouter()
 
 urlpatterns = [
@@ -21,6 +23,9 @@ urlpatterns = [
 
     # http://localhost:8000/api/<router-viewsets>
     path('api/', include(router.urls)),
+
+    path('api/token/access/', TokenRefreshView.as_view(), name='token_get_access'),
+    path('api/token/both/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
 
     # http://localhost:8000/api/admin/
     path('api/admin/', admin.site.urls),

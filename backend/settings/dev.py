@@ -16,6 +16,7 @@ import os
 SETTINGS_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(SETTINGS_DIR)
 
+# ID & Secret set via heroku
 TINK_CLIENT_ID = os.getenv('TINK_CLIENT_ID')
 TINK_CLIENT_SECRET = os.getenv('TINK_CLIENT_SECRET')
 
@@ -41,11 +42,19 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',  # < Per Whitenoise, to disable built in
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
     'backend.api',
 ]
 
+'''
+CorsMiddleware should be placed as high as possible, especially before any
+middleware that can generate responses such as Django’s CommonMiddleware
+or Whitenoise’s WhiteNoiseMiddleware. If it is not before, it will not be
+able to add the CORS headers to these responses.
+'''
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -104,6 +113,53 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+]
+
+# Authentication
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+from datetime import timedelta
+
+SIMPLE_JWT_SIGNING_KEY = "b=72^ado*%1(v3r7rga9ch)03xr=d*f)lroz94kosf!61((9=i"
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(seconds=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(seconds=15),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SIMPLE_JWT_SIGNING_KEY,
+    'VERIFYING_KEY': None,
+    'AUDIENCE': None,
+    'ISSUER': None,
+
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
+
+    'JTI_CLAIM': 'jti',
+
+    'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
+    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
+
+# Cors Settings
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:8080',
+    'http://127.0.0.1:8080',
+    'https://legendary-octo-winner.herokuapp.com/'
 ]
 
 

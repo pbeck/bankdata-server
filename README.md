@@ -6,7 +6,7 @@
 
 **Bankdata helps aggregate your personal banking data from a wide range of banks and financial institutions and feed that data into Microsoft Excel.** We hope this will facilitate and encourage users to utilize a multitude of financial actors for savings, mortages, transaction accounts, et al. [To sign up and download the excel add-in please visit this link.](https://beckmanstrandberg.se/bankdata)
 
-The long-term mission and _raison d'être_ behind this is the exploration and creation of intelligent and independent personal finance tools to enable you and me to live richer lives. The guiding principle for achieveing this is the combination of **smart software**, **open data**, and **a great community**.
+The long-term mission and _raison d'être_ behind this is the exploration and creation of intelligent and independent personal finance tools to assist you and me in living meaningful lives. The guiding principle for achieveing this is the combination of **smart software**, **open data**, and **a great community**.
 
 I believe a project like this needs to be properly aligned and clear in incentives; that's why the server is open source.
 
